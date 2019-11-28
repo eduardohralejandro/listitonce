@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node src/index.js"
   },
   "author": "Eduardo Hernandez",
   "license": "ISC",
@@ -13,5 +13,8 @@
     "babel-preset-env": "^1.7.0",
     "graphql-yoga": "^1.18.3",
     "uuid": "^3.3.3"
+  },
+  "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
   }
 }
