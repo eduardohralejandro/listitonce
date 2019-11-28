@@ -1,11 +1,11 @@
 const list = [
   {
     id: 1,
-    listTitle: 'super tangent',
+    title: 'super tangent',
   },
   {
     id: 2,
-    listTitle: 'new hypothesis',
+    title: 'new hypothesis',
   },
 ]
 
@@ -30,4 +30,4 @@ const db = {
 }
 
 
-export { db as default }
+export { db as default };
