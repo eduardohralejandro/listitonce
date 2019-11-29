@@ -1,0 +1,13 @@
+type Query {
+    lists: [List!]!
+}
+
+type Mutation {
+    createList(title: String!): List
+    deleteList(id: ID!): List
+}
+
+type List {
+    id: ID!
+    title: String!
+}
