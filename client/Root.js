@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider, createClient } from 'urql';
 
-import FirstComponent from './FirstComponent';
+import FirstComponent from './components/FirstComponent';
 
 
 const client = createClient({
