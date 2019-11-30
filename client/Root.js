@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider, createClient } from 'urql';
 
-import FirstComponent from './FirstComponent';
+import UserLayout from './components/UserLayout';
 
 
 const client = createClient({
@@ -12,7 +12,7 @@ const client = createClient({
 const Root = () => {
     return (
         <Provider value={client}>
-            <FirstComponent />
+            <UserLayout />
         </Provider>
     );
 };
