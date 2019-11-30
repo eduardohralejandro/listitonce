@@ -15,6 +15,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
+    "@babel/plugin-proposal-do-expressions": "^7.7.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0"
   }
 }
