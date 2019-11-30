@@ -1,7 +1,10 @@
 const Query = {
-    lists: (parent, args, { db }, info) => {
-        return db.list
+    items: (parent, args, { db }, info) => {
+        return db.list.items;
     },
+    list: (parent, args, { db }, info) => {
+        return db.list;
+    }
 }
 
 

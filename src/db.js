@@ -1,32 +1,26 @@
-const list = [
-  {
-    id: 1,
-    title: 'super tangent',
-  },
-  {
-    id: 2,
-    title: 'new hypothesis',
-  },
-]
-
-const items = [
-  {
-    id: 1,
-    product: 'Chicken',
-    employee: 'Eduardo',
-    bought: false,
-  },
-  {
-    id: 2,
-    product: 'Fish',
-    employee: 'Eddy',
-    bought: true,
-  },
-]
+const list = {
+  listTitle: 'super title',
+  id: "1",
+  items: [
+    {
+      id: "1",
+      title: 'super tangent',
+      employee: 'Eduardo',
+      product: 'Chicken',
+      bought: false,
+    },
+    {
+      id: "2",
+      title: 'new hypothesis',
+      employee: 'Eddy',
+      product: 'Fish',
+      bought: false
+    },
+  ]
+}
 
 const db = {
   list,
-  items,
 }
 
 
