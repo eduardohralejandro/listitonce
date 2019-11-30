@@ -30,6 +30,7 @@ const UserLayout = () => {
     else {
         return (
             <Fragment>
+                <AddList />
                 {data.lists.map((list) => {
                     return (
                         <Fragment key={list.id}>
@@ -38,7 +39,6 @@ const UserLayout = () => {
                         </Fragment>
                     );
                 })}
-                <AddList />
             </Fragment>
         );
     }
