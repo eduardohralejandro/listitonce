@@ -2,18 +2,18 @@ import uuid from 'uuid';
 
 
 const Mutation = {
-    createList: (parent, args, { db }, info) => {
-        const newList = {
+    createItem: (parent, args, { db }, info) => {
+        const newItem = {
             id: uuid(),
             ...args
         }
-        db.list.push(newList);
-        return newList;
+        db.list.items.push(newItem);
+        return newItem;
     },
-    deleteList: (parent, args, { db }, info) => {
-        const listIndex = db.list.findIndex((list) => list.id === args.id);
-        if (listIndex > -1) {
-            const deleted = db.list.splice(listIndex, 1)
+    deleteItem: (parent, args, { db }, info) => {
+        const itemIndex = db.list.items.findIndex((item) => item.id === args.id);
+        if (itemIndex > -1) {
+            const deleted = db.list.items.splice(itemIndex, 1)
             return deleted[0]
         }
         return null
