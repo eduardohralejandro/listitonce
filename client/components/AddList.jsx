@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'urql';
 import gql from 'graphql-tag';
 
@@ -14,7 +14,20 @@ const createList = gql`
 
 const AddList = () => {
 
+  const [title, setTitle] = useState("");
+
   const [res, executeMutation] = useMutation(createList);
+
+  const handleOnChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const addTitle = (e) => {
+
+    e.preventDefault();
+
+    executeMutation({ title });
+  };
 
   if (res.error) {
     return 'oh no, this is infinity -> ...';
@@ -22,9 +35,10 @@ const AddList = () => {
   else {
     return (
       <div>
-        <button onClick={() => executeMutation({ title: 'something new here!' })}>
-          Add list!
-        </button>
+        <form onSubmit={(e) => addTitle(e)}>
+          <input onChange={(e) => handleOnChange(e)} />
+          <button>add</button>
+        </form>
       </div>
     );
   }
