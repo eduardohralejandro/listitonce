@@ -6,6 +6,7 @@ import CreateItem from './CreateItem';
 import Items from './Items';
 import ListTitle from './ListTitle';
 import SaveList from './SaveList';
+import RenderLists from './RenderLists';
 
 
 const GetLists = gql`
@@ -48,6 +49,7 @@ const UserLayout = () => {
                         </Fragment>
                     );
                 })}
+                <RenderLists />
             </Fragment>
         );
     }

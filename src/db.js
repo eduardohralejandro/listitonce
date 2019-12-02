@@ -1,16 +1,19 @@
+import uuid from 'uuid';
+
+
 const list = [{
   listTitle: 'super title',
-  id: "1",
+  id: uuid(),
   items: [
     {
-      id: "1",
+      id: uuid(),
       title: 'super tangent',
       employee: 'Eduardo',
       product: 'Chicken',
       bought: false,
     },
     {
-      id: "2",
+      id: uuid(),
       title: 'new hypothesis',
       employee: 'Eddy',
       product: 'Fish',
@@ -22,17 +25,17 @@ const list = [{
 
 const shoppingList = [{
   listTitle: 'first shop list',
-  id: "2",
+  id: uuid(),
   items: [
     {
-      id: "3",
+      id: uuid(),
       title: 'dinner',
       employee: 'Eduardo',
       product: 'pan',
       bought: false,
     },
     {
-      id: "4",
+      id: uuid(),
       title: 'yep',
       employee: 'Eddy',
       product: 'hehehe',
