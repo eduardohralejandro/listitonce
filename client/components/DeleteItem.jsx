@@ -4,18 +4,18 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 
-const deleteList = gql`
-  mutation deleteList($id: ID!) {
-    deleteList(id: $id) {
+const deleteItem = gql`
+  mutation deleteItem($id: ID!) {
+    deleteItem(id: $id) {
       id
       title
     }
   }
 `;
 
-const DeleteList = ({ id }) => {
+const DeleteItem = ({ id }) => {
 
-    const [res, executeMutation] = useMutation(deleteList);
+    const [res, executeMutation] = useMutation(deleteItem);
 
     if (res.error) {
         return 'oh error';
@@ -23,14 +23,15 @@ const DeleteList = ({ id }) => {
     else {
         return (
             <div>
-                <button onClick={() => executeMutation({ id: id })}>delete</button>
+                <button onClick={() => executeMutation({ id })}>delete</button>
             </div>
         );
     }
 };
 
-DeleteList.propTypes = {
+DeleteItem.propTypes = {
     id: PropTypes.string,
 };
 
-export default DeleteList;
+
+export default DeleteItem;
