@@ -1,23 +1,38 @@
 type Query {
-    list: List!
-    items: [Item!]!
+    list: [List!]!
+    savedList: [newList!]!
 }
 
 type Mutation {
-    createItem(title: String!): Item
-    deleteItem(id: ID!): Item
-    saveList(title: String!): List
+    createItem(title: String!): Item!
+    deleteItem(id: ID): Item
+    updateBuyer(id: ID, data: updateBuyerInput!): Item!
+    saveList(id: ID, listTitle: String!): newList!
 }
 
-type Item {
-    id: ID!
-    title: String!
+input updateBuyerInput {
+    title: String
     employee: String
     product: String
     bought: Boolean
 }
 
+type newList {
+    id: ID
+    listTitle: String
+    items: [Item]
+}
+
 type List {
-    id: ID!
+    id: ID
     listTitle: String!
+    items: [Item!]!
+}
+
+type Item {
+    id: ID
+    title: String
+    employee: String
+    product: String
+    bought: Boolean
 }

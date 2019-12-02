@@ -1,4 +1,4 @@
-const list = {
+const list = [{
   listTitle: 'super title',
   id: "1",
   items: [
@@ -17,10 +17,33 @@ const list = {
       bought: false
     },
   ]
-}
+}]
+
+
+const shoppingList = [{
+  listTitle: 'first shop list',
+  id: "2",
+  items: [
+    {
+      id: "3",
+      title: 'dinner',
+      employee: 'Eduardo',
+      product: 'pan',
+      bought: false,
+    },
+    {
+      id: "4",
+      title: 'yep',
+      employee: 'Eddy',
+      product: 'hehehe',
+      bought: false
+    },
+  ]
+}];
 
 const db = {
   list,
+  shoppingList
 }
 
 
