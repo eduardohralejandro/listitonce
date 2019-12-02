@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import CreateItem from './CreateItem';
 import Items from './Items';
 import ListTitle from './ListTitle';
+import SaveList from './SaveList';
 
 
 const GetLists = gql`
@@ -37,6 +38,7 @@ const UserLayout = () => {
     else {
         return (
             <Fragment>
+                <SaveList />
                 <CreateItem />
                 {data.list.map((list) => {
                     return (
