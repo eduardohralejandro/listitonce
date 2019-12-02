@@ -3,20 +3,20 @@ import { useMutation } from 'urql';
 import gql from 'graphql-tag';
 
 
-const createList = gql`
-  mutation createList($title: String!) {
-    createList(title: $title) {
+const createItem = gql`
+  mutation createItem($title: String!) {
+    createItem(title: $title) {
       id
       title
     }
   }
 `;
 
-const AddList = () => {
+const CreateItem = () => {
 
   const [title, setTitle] = useState("");
 
-  const [res, executeMutation] = useMutation(createList);
+  const [res, executeMutation] = useMutation(createItem);
 
   const handleOnChange = (e) => {
     setTitle(e.target.value);
@@ -45,4 +45,4 @@ const AddList = () => {
 };
 
 
-export default AddList;
+export default CreateItem;

@@ -2,18 +2,25 @@ import React, { Fragment } from 'react';
 import { useQuery } from 'urql';
 import gql from 'graphql-tag';
 
-import AddList from './AddList';
-import Lists from './Lists';
-import DeleteList from './DeleteList';
+import CreateItem from './CreateItem';
+import Items from './Items';
+import ListTitle from './ListTitle';
 
 
 const GetLists = gql`
   query {
-    lists {
+    list { 
+        listTitle 
         id
-        title
+        items {
+            id 
+            title 
+            employee 
+            product
+            bought
+        }
     }
-  }
+}
 `;
 
 const UserLayout = () => {
@@ -30,12 +37,12 @@ const UserLayout = () => {
     else {
         return (
             <Fragment>
-                <AddList />
-                {data.lists.map((list) => {
+                <CreateItem />
+                {data.list.map((list) => {
                     return (
                         <Fragment key={list.id}>
-                            <Lists title={list.title} />
-                            <DeleteList id={list.id} />
+                            <ListTitle title={list.listTitle} />
+                            <Items items={list.items} />
                         </Fragment>
                     );
                 })}
