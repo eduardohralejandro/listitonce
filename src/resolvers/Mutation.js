@@ -3,12 +3,17 @@ import uuid from 'uuid';
 
 const Mutation = {
     createItem: (parent, args, { db }, info) => {
-
+        
         const newItem = {
             id: uuid(),
-            ...args
+            ...args,
+            employee: null,
+            bought: false,
+            price: 0,
         }
+        
         db.list.map((list) => list.items.push(newItem));
+
         return newItem;
     },
     deleteItem: (parent, args, { db }, info) => {
@@ -16,7 +21,7 @@ const Mutation = {
         const itemIndex = db.list.map((list) => {
             return list.items.findIndex((item) => item.id === args.id);
         });
-
+        
         if (itemIndex > -1) {
             const deleted = db.list.map((list) => list.items.splice(itemIndex, 1));
             return deleted[0];
@@ -30,27 +35,42 @@ const Mutation = {
         });
 
         const buyer = lists.map((list) => {
-            if (list) {
-                list.title = args.data.title;
-                list.employee = args.data.employee;
-                list.product = args.data.employee;
-                list.bought = args.data.employee;
-            }
-            return list
-        })
-
+            list.employee = args.data.employee;
+            list.product =  args.data.product;
+            list.bought = args.data.bought;
+            list.price = args.data.price;
+            return list;
+        });
+       
         return buyer;
-
     },
     saveList: (parent, args, { db }, info) => {
+       
+        const items = [];
 
-        const newList = db.list.map((list) => {
-            list.listTitle = args.listTitle;
-            const insertData = db.shoppingList.push(list);
-            return insertData;
-        });
+        db.list.map((list) => list.items.map(item => items.push(item)));
+
+        const newList = {
+            id: uuid(),
+            ...args,
+            items,
+        }
+        db.shoppingList.push(newList);
+        db.list.map((list) => list.items = []);
 
         return newList;
+    },
+    deleteItemList: (parent, args, { db }, info) => {
+       
+        const itemIndex = db.shoppingList.map((list) => {
+            return list.items.findIndex((item) => item.id === args.id);
+        });
+        
+        if (itemIndex > -1) {
+            const deleted = db.shoppingList.map((list) => list.items.splice(itemIndex, 1));
+            return deleted[0];
+        }
+        return null;
     }
 }
 
