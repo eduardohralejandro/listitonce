@@ -4,29 +4,29 @@ import gql from 'graphql-tag';
 
 
 const createItem = gql`
-  mutation createItem($title: String!) {
-    createItem(title: $title) {
+  mutation createItem($product: String!) {
+    createItem(product: $product) {
       id
-      title
+      product
     }
   }
 `;
 
 const CreateItem = () => {
 
-  const [title, setTitle] = useState("");
+  const [product, setProduct] = useState("");
 
   const [res, executeMutation] = useMutation(createItem);
 
   const handleOnChange = (e) => {
-    setTitle(e.target.value);
+    setProduct(e.target.value);
   };
 
   const addTitle = (e) => {
 
     e.preventDefault();
 
-    executeMutation({ title });
+    executeMutation({ product });
   };
 
   if (res.error) {

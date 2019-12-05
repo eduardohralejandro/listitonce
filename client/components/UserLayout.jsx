@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 
 import CreateItem from './CreateItem';
 import Items from './Items';
-import ListTitle from './ListTitle';
 import SaveList from './SaveList';
 import RenderLists from './RenderLists';
 
@@ -12,14 +11,11 @@ import RenderLists from './RenderLists';
 const GetLists = gql`
   query {
     list { 
-        listTitle 
-        id
         items {
             id 
-            title 
-            employee 
-            product
-            bought
+            product 
+            bought 
+            employee  
         }
     }
 }
@@ -30,7 +26,6 @@ const UserLayout = () => {
     const [res] = useQuery({
         query: GetLists,
     });
-
     const { data } = res;
 
     if (res.fetching) {
@@ -44,7 +39,6 @@ const UserLayout = () => {
                 {data.list.map((list) => {
                     return (
                         <Fragment key={list.id}>
-                            <ListTitle title={list.listTitle} />
                             <Items items={list.items} />
                         </Fragment>
                     );

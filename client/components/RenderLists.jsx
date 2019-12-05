@@ -10,7 +10,12 @@ const savedLists = gql`
     savedList {
       id
       listTitle
-      items{id title employee product bought}
+      items {
+          id 
+          employee 
+          product 
+          bought
+          }
     }
   }
 `;

@@ -9,7 +9,6 @@ const ListRow = ({ children, listTitle }) => {
                 return (
                     <div key={element.id}>
                         <h1>{children.listTitle}</h1>
-                        {element.title}
                         {element.employee}
                         {element.bought}
                         {element.product}
