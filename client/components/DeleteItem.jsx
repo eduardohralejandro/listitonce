@@ -8,7 +8,6 @@ const deleteItem = gql`
   mutation deleteItem($id: ID!) {
     deleteItem(id: $id) {
       id
-      title
     }
   }
 `;
