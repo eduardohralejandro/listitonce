@@ -1,17 +1,12 @@
-import uuid from 'uuid';
-
-
 const Mutation = {
-    createItem: (parent, args, { db }, info) => {
+    createItem: async (parent, args, { db }, info) => {
         
         const newItem = {
-            id: uuid(),
             ...args,
             employee: null,
             bought: false,
             price: 0,
         }
-        
         db.list.map((list) => list.items.push(newItem));
 
         return newItem;
@@ -44,21 +39,25 @@ const Mutation = {
        
         return buyer;
     },
-    saveList: (parent, args, { db }, info) => {
+    saveList: async (parent, args, { db, ListSchema }, info) => {
        
         const items = [];
 
         db.list.map((list) => list.items.map(item => items.push(item)));
-
-        const newList = {
-            id: uuid(),
+  
+        const saveInDb = new ListSchema({
             ...args,
             items,
-        }
-        db.shoppingList.push(newList);
-        db.list.map((list) => list.items = []);
+        });
 
-        return newList;
+        try {
+            await saveInDb.save();
+            db.list.map((list) => list.items = []);
+            return saveInDb;
+        } 
+        catch(e) {
+            throw new Error("Unable to save the list, try again");
+        }
     },
     deleteItemList: (parent, args, { db }, info) => {
        
