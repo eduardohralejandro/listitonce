@@ -1,8 +1,4 @@
-import uuid from 'uuid';
-
-
 const list = [{items: []}];
-
 
 const shoppingList = [];
 
