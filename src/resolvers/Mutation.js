@@ -1,7 +1,11 @@
+import uuid from "uuid";
+
+
 const Mutation = {
     createItem: async (parent, args, { db }, info) => {
         
         const newItem = {
+            id: uuid(),
             ...args,
             employee: null,
             bought: false,
@@ -11,7 +15,7 @@ const Mutation = {
 
         return newItem;
     },
-    deleteItem: (parent, args, { db }, info) => {
+    deleteItem: (parent, args, { db, ListSchema }, info) => {
 
         const itemIndex = db.list.map((list) => {
             return list.items.findIndex((item) => item.id === args.id);
@@ -59,8 +63,8 @@ const Mutation = {
             throw new Error("Unable to save the list, try again");
         }
     },
-    deleteItemList: (parent, args, { db }, info) => {
-       
+    deleteItemList: (parent, args, { db, ListSchema }, info) => {
+        
         const itemIndex = db.shoppingList.map((list) => {
             return list.items.findIndex((item) => item.id === args.id);
         });
@@ -69,6 +73,18 @@ const Mutation = {
             const deleted = db.shoppingList.map((list) => list.items.splice(itemIndex, 1));
             return deleted[0];
         }
+        return null;
+    },
+    deleteList: (parent, args, { db, ListSchema }, info) => {
+        ListSchema.findByIdAndRemove(args.id, (err, data) => {
+           if (err) {
+                throw new Error("Unable to delete the list, try again");
+           } 
+           else {
+               return data;
+           }
+        });
+
         return null;
     }
 }
