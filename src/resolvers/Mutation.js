@@ -29,6 +29,10 @@ const Mutation = {
     },
     updateBuyer: async (parent, args, { db, ListSchema }, info) => {
 
+        if (args.data.employee.length === 0 || args.data.product.length === 0) {
+            throw new Error("You must include the required information");
+        }
+
         try {
             const updatedItem = await ListSchema.update({ "items._id": args.id }, { "$set": {
                 "items.$.employee": args.data.employee,
