@@ -63,18 +63,21 @@ const Mutation = {
             throw new Error("Unable to save the list, try again");
         }
     },
-    deleteItemList: (parent, args, { db, ListSchema }, info) => {
-        
-        const itemIndex = db.shoppingList.map((list) => {
-            return list.items.findIndex((item) => item.id === args.id);
-        });
-        
-        if (itemIndex > -1) {
-            const deleted = db.shoppingList.map((list) => list.items.splice(itemIndex, 1));
-            return deleted[0];
+
+    deleteItemList: async (parent, args, { db, ListSchema }, info) => {
+        try {
+            const list = ListSchema.update( 
+                { _id : args.listId } , 
+                { "$pull" : { items : { _id :  args.itemId } } } , 
+                { "multi" : true }  
+            );
+            
+            return list;
         }
-        return null;
-    },
+        catch(e) {
+            throw new Error("Unable to delete item, try again");
+        }
+    },        
     deleteList: (parent, args, { db, ListSchema }, info) => {
         ListSchema.findByIdAndRemove(args.id, (err, data) => {
            if (err) {
@@ -84,7 +87,7 @@ const Mutation = {
                return data;
            }
         });
-
+      
         return null;
     }
 }
