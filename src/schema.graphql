@@ -1,5 +1,5 @@
 type Query {
-    list: [List!]!
+    list: [List]
     savedList: [newList!]!
 }
 
