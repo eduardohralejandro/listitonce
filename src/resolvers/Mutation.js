@@ -27,21 +27,20 @@ const Mutation = {
         }
         return null;
     },
-    updateBuyer: (parent, args, { db }, info) => {
+    updateBuyer: async (parent, args, { db, ListSchema }, info) => {
 
-        const lists = db.shoppingList.map((list) => {
-            return list.items.find((item) => item.id === args.id);
-        });
-
-        const buyer = lists.map((list) => {
-            list.employee = args.data.employee;
-            list.product =  args.data.product;
-            list.bought = args.data.bought;
-            list.price = args.data.price;
-            return list;
-        });
-       
-        return buyer;
+        try {
+            const updatedItem = await ListSchema.update({ "items._id": args.id }, { "$set": {
+                "items.$.employee": args.data.employee,
+                "items.$.product": args.data.product,
+                "items.$.bought": args.data.bought,
+                "items.$.price": args.data.price,
+            }});
+                return updatedItem;
+        } 
+        catch(e) {
+            throw new Error("Unable to update item")
+        }
     },
     saveList: async (parent, args, { db, ListSchema }, info) => {
        
