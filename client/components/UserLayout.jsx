@@ -36,9 +36,9 @@ const UserLayout = () => {
             <Fragment>
                 <SaveList />
                 <CreateItem />
-                {data.list.map((list) => {
+                {data.list && data.list.map((list) => {
                     return (
-                        <Fragment key={list.id}>
+                        <Fragment key={list.id + "3"}>
                             <Items items={list.items} />
                         </Fragment>
                     );

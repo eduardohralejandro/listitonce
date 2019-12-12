@@ -1,11 +1,39 @@
 import React from 'react';
-import { Provider, createClient } from 'urql';
-
+import { Provider, createClient, dedupExchange, fetchExchange } from 'urql';
+import { cacheExchange } from '@urql/exchange-graphcache';
+import gql from 'graphql-tag';
 import UserLayout from './components/UserLayout';
 
 
 const client = createClient({
     url: 'http://localhost:4000/',
+    exchanges:[ cacheExchange({
+        updates: {
+            Mutation: {
+                createItem: (result, args, cache, info) => {
+                    cache.updateQuery({
+                        query: gql`
+                            {
+                                list { 
+                                    items {
+                                        id 
+                                        product 
+                                        bought 
+                                        employee  
+                                    }
+                                }
+                            }
+                        `
+                    }, 
+                   (dataCache) => {
+                        dataCache.list.unshift(result.createItem);
+                        return dataCache;
+                    }
+                    )
+                }
+            }
+        }
+    }), fetchExchange, dedupExchange],
 });
 
 
