@@ -8,8 +8,9 @@ const Items = ({ items }) => {
     return (
         <div>
             {items.map((item) => {
+            
                 return (
-                    <Fragment key={item.id}>
+                    <Fragment key={`${item.id}1`}>
                         <h1>{item.product}</h1>
                         <DeleteItem id={item.id} />
                     </Fragment>
