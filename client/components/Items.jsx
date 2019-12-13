@@ -22,7 +22,6 @@ const Items = ({ items }) => {
 Items.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
         product:  PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.oneOf([null]),
