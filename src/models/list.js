@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 
 const itemsSubSchema = new mongoose.Schema({
-    id: {
-      type: String,
-      required: false,
-    },
     product: {
       type: String,
       required: true,
@@ -25,9 +21,6 @@ const itemsSubSchema = new mongoose.Schema({
 
 const ListSchema = new mongoose.Schema({
   listTitle: {
-    type: String,
-  },
-  id: {
     type: String,
   },
   items: [ itemsSubSchema ],

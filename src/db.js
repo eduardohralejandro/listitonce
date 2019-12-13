@@ -1,4 +1,6 @@
-const list = [{items: []}];
+import uuid from 'uuid';
+
+const list = [ { id: uuid(), items: [] } ];
 
 const shoppingList = [];
 

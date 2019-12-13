@@ -10,7 +10,8 @@ import RenderLists from './RenderLists';
 
 const GetLists = gql`
   query {
-    list { 
+    list {
+        id 
         items {
             id 
             product 
@@ -38,7 +39,7 @@ const UserLayout = () => {
                 <CreateItem />
                 {data.list && data.list.map((list) => {
                     return (
-                        <Fragment key={list.id + "3"}>
+                        <Fragment key={list.id}>
                             <Items items={list.items} />
                         </Fragment>
                     );
