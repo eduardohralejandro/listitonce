@@ -1,6 +1,6 @@
 type Query {
     list: [List]
-    savedList: [newList!]!
+    savedList: [newList]
 }
 
 type Mutation {

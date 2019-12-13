@@ -14,7 +14,8 @@ const client = createClient({
                     cache.updateQuery({
                         query: gql`
                             {
-                                list { 
+                                list {
+                                    id 
                                     items {
                                         id 
                                         product 
@@ -26,11 +27,31 @@ const client = createClient({
                         `
                     }, 
                    (dataCache) => {
-                        dataCache.list.unshift(result.createItem);
+                        dataCache.list.unshift(result.createItem); 
                         return dataCache;
                     }
-                    )
-                }
+                    );
+                },
+                deleteItem: (result, args, cache, info) => {
+                    cache.updateQuery({
+                        query: gql`
+                            {
+                                list {
+                                    id 
+                                    items {
+                                        id 
+                                        product 
+                                        bought 
+                                        employee  
+                                    }
+                                }
+                            }
+                        `
+                    },
+                    (dataCache) => {
+                        dataCache.list.unshift(result.deleteItem);
+                        return dataCache;
+                    })}
             }
         }
     }), fetchExchange, dedupExchange],

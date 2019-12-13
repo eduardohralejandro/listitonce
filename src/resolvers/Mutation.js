@@ -7,12 +7,11 @@ const Mutation = {
         const newItem = {
             id: uuid(),
             ...args,
-            employee: null,
+            employee: 0,
             bought: false,
             price: 0,
         }
         db.list.map((list) => list.items.push(newItem));
-
         return newItem;
     },
     deleteItem: (parent, args, { db, ListSchema }, info) => {
@@ -34,7 +33,7 @@ const Mutation = {
         }
 
         try {
-            const updatedItem = await ListSchema.update({ "items._id": args.id }, { "$set": {
+            const updatedItem = await ListSchema.update({ "items.id": args.id }, { "$set": {
                 "items.$.employee": args.data.employee,
                 "items.$.product": args.data.product,
                 "items.$.bought": args.data.bought,
