@@ -36,9 +36,11 @@ const RenderLists = () => {
             <div>
                 {data.savedList.map((list) => {
                    return (
-                    <ListRow  listTitle={list.listTitle} key={list.id}>
-                        {list.items}
-                    </ListRow>
+                    <div key={list.id}>
+                        <ListRow  listTitle={list.listTitle}>
+                            {list.items}
+                        </ListRow>
+                    </div>
                    );
                 })}
             </div>
