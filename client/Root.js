@@ -51,7 +51,28 @@ const client = createClient({
                     (dataCache) => {
                         dataCache.list.unshift(result.deleteItem);
                         return dataCache;
-                    })}
+                    })},
+                    saveList: (result, args, cache, info) => {
+                        cache.updateQuery({
+                            query: gql`
+                                {
+                                    savedList {
+                                    id
+                                    listTitle
+                                    items {
+                                        id 
+                                        employee 
+                                        product 
+                                        bought
+                                        }
+                                    }
+                                }
+                            `
+                        },
+                        (dataCache) => {
+                            dataCache.savedList.unshift(result.saveList);
+                            return dataCache;
+                        })}
             }
         }
     }), fetchExchange, dedupExchange],
