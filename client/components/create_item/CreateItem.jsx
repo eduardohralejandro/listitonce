@@ -19,6 +19,7 @@ const CreateItem = () => {
     e.preventDefault();
 
     executeMutation({ product });
+    setProduct("");
   };
 
   if (res.error) {
@@ -28,7 +29,7 @@ const CreateItem = () => {
     return (
       <div>
         <form onSubmit={(e) => addTitle(e)}>
-          <input onChange={(e) => handleOnChange(e)} />
+          <input value={product} onChange={(e) => handleOnChange(e)} />
           <button>add</button>
         </form>
       </div>
