@@ -1,8 +1,10 @@
 import React from 'react';
 import { Provider, createClient, dedupExchange, fetchExchange,  } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
-import gql from 'graphql-tag';
+
 import UserLayout from './components/user_layout/UserLayout';
+import GET_LISTS from './components/user_layout/GET_LISTS.graphql';
+import RENDER_LISTS from './components/render_lists/RENDER_LISTS.graphql';
 
 
 const client = createClient({
@@ -12,67 +14,34 @@ const client = createClient({
             Mutation: {
                 createItem: (result, args, cache, info) => {
                     cache.updateQuery({
-                        query: gql`
-                            {
-                                list {
-                                    id 
-                                    items {
-                                        id 
-                                        product 
-                                        bought 
-                                        employee  
-                                    }
-                                }
-                            }
-                        `
-                    }, 
-                   (dataCache) => {
-                        dataCache.list.unshift(result.createItem); 
-                        return dataCache;
-                    }
+                            query: GET_LISTS,
+                        }, 
+                        (dataCache) => {
+                            dataCache.list.unshift(result.createItem); 
+                            return dataCache;
+                        }
                     );
                 },
                 deleteItem: (result, args, cache, info) => {
                     cache.updateQuery({
-                        query: gql`
-                            {
-                                list {
-                                    id 
-                                    items {
-                                        id 
-                                        product 
-                                        bought 
-                                        employee  
-                                    }
-                                }
-                            }
-                        `
-                    },
-                    (dataCache) => {
-                        dataCache.list.unshift(result.deleteItem);
-                        return dataCache;
-                    })},
-                    saveList: (result, args, cache, info) => {
-                        cache.updateQuery({
-                            query: gql`
-                                {
-                                    savedList {
-                                    id
-                                    listTitle
-                                    items {
-                                        id 
-                                        employee 
-                                        product 
-                                        bought
-                                        }
-                                    }
-                                }
-                            `
+                            query: GET_LISTS,
+                        },
+                        (dataCache) => {
+                            dataCache.list.unshift(result.deleteItem);
+                            return dataCache;
+                        }
+                    );
+                },
+                saveList: (result, args, cache, info) => {
+                    cache.updateQuery({
+                            query: RENDER_LISTS,
                         },
                         (dataCache) => {
                             dataCache.savedList.unshift(result.saveList);
                             return dataCache;
-                        })}
+                        }
+                    );
+                }
             }
         }
     }), fetchExchange, dedupExchange],
