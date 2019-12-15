@@ -14,6 +14,11 @@ const SaveList = () => {
     setTitle(e.target.value);
   };
 
+  const saveNewList = () => {
+    executeMutation({ listTitle: title })
+    setTitle("");
+  };
+
     if (res.error) {
         return 'error';
     } 
@@ -21,8 +26,8 @@ const SaveList = () => {
         return (
             <div>
                 <h1>save list</h1>
-                <input onChange={(e) => handleChange(e)} placeholder="List title" />
-                <button onClick={() => executeMutation({ listTitle: title })}>save list</button>
+                <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
+                <button onClick={saveNewList}>save list</button>
             </div>
         );
     }
