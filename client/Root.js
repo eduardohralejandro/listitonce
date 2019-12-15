@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider, createClient, dedupExchange, fetchExchange,  } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 
-
 import UserLayout from './components/user_layout/UserLayout';
 import GET_LISTS from './components/user_layout/GET_LISTS.graphql';
 import RENDER_LISTS from './components/render_lists/RENDER_LISTS.graphql';
