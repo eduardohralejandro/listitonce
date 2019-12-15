@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from 'urql';
-import gql from 'graphql-tag';
 
+import CREATE_ITEM from './CREATE_ITEM.graphql';
 
-const createItem = gql`
-  mutation createItem($product: String!) {
-    createItem(product: $product) {
-      id
-      product
-    }
-  }
-`;
 
 const CreateItem = () => {
 
-  const [product, setProduct] = useState("");
+  const [ product, setProduct ] = useState("");
 
-  const [res, executeMutation] = useMutation(createItem);
+  const [ res, executeMutation ] = useMutation(CREATE_ITEM);
 
   const handleOnChange = (e) => {
     setProduct(e.target.value);

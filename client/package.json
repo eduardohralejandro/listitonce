@@ -54,6 +54,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-do-expressions": "^7.7.4"
+    "@babel/plugin-proposal-do-expressions": "^7.7.4",
+    "babel-plugin-import-graphql": "^2.7.0"
   }
 }

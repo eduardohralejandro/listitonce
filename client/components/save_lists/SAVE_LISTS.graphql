@@ -1,0 +1,5 @@
+mutation saveList($listTitle: String!) {
+    saveList(listTitle: $listTitle) {
+        listTitle
+    }
+  }

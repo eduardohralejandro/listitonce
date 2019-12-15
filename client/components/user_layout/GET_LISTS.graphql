@@ -1,0 +1,11 @@
+query {
+    list {
+        id 
+        items {
+            id 
+            product 
+            bought 
+            employee  
+        }
+    }
+}

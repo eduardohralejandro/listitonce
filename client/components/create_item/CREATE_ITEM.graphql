@@ -1,0 +1,6 @@
+mutation createItem($product: String!) {
+  createItem(product: $product) {
+    id
+    product
+  }
+}

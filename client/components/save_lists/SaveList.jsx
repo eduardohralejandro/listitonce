@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from 'urql';
 
+import SAVE_LISTS from './SAVE_LISTS.graphql';
 
-const saveList = gql`
-  mutation saveList($listTitle: String!) {
-    saveList(listTitle: $listTitle) {
-        listTitle
-    }
-  }
-`;
 
 const SaveList = () => {
 
-  const [title, setTitle] = useState("");
+  const [ title, setTitle ] = useState("");
 
-  const [res, executeMutation] = useMutation(saveList);
+  const [ res, executeMutation ] = useMutation(SAVE_LISTS);
 
   const handleChange = (e) => {
     setTitle(e.target.value);

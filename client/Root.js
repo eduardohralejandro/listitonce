@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider, createClient, dedupExchange, fetchExchange,  } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import gql from 'graphql-tag';
-import UserLayout from './components/UserLayout';
+import UserLayout from './components/user_layout/UserLayout';
 
 
 const client = createClient({
