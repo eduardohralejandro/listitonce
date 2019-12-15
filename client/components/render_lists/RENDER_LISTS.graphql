@@ -1,0 +1,12 @@
+query {
+    savedList {
+      id
+      listTitle
+      items {
+          id 
+          employee 
+          product 
+          bought
+      }
+    }
+  }

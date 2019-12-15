@@ -1,31 +1,17 @@
 import React, { Fragment } from 'react';
 import { useQuery } from 'urql';
-import gql from 'graphql-tag';
 
-import CreateItem from './CreateItem';
-import Items from './Items';
-import SaveList from './SaveList';
-import RenderLists from './RenderLists';
+import CreateItem from '../create_item/CreateItem';
+import Items from '../items/Items';
+import SaveList from '../save_lists/SaveList';
+import RenderLists from '../render_lists/RenderLists';
+import GET_LISTS from './GET_LISTS.graphql';
 
-
-const GetLists = gql`
-  query {
-    list {
-        id 
-        items {
-            id 
-            product 
-            bought 
-            employee  
-        }
-    }
-}
-`;
 
 const UserLayout = () => {
 
-    const [res] = useQuery({
-        query: GetLists,
+    const [ res ] = useQuery({
+        query: GET_LISTS,
     });
     const { data } = res;
 

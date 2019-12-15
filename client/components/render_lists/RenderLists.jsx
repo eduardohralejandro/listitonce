@@ -1,29 +1,14 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import gql from 'graphql-tag';
 
-import ListRow from './ListRow';
+import ListRow from '../list_row/ListRow';
+import RENDER_LISTS from './RENDER_LISTS.graphql';
 
-
-const savedLists = gql`
-  query {
-    savedList {
-      id
-      listTitle
-      items {
-          id 
-          employee 
-          product 
-          bought
-          }
-    }
-  }
-`;
 
 const RenderLists = () => {
     
-    const [res] = useQuery({
-        query: savedLists,
+    const [ res ] = useQuery({
+        query: RENDER_LISTS,
     });
     
     const { data } = res;
