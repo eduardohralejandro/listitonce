@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CheckItem from '../bought_item/CheckItem'
 
 const ListRow = ({ children, listTitle }) => {
     return (
@@ -12,6 +13,7 @@ const ListRow = ({ children, listTitle }) => {
                         {element.employee}
                         {element.bought}
                         {element.product}
+                        <CheckItem item={element} />
                     </div>
                 );
             })}

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {  useMutation } from 'urql';
 
-import UPDATE_PRODUCT_INFO from './UPDATE_PRODUCT_INFO.graphql';
+import UPDATE_PRODUCT_INFO from '../bought_item/UPDATE_PRODUCT_INFO.graphql';
 
 
 const CheckItem = ({ item }) => {
