@@ -16,8 +16,8 @@ const CheckItem = ({ item }) => {
         else if (!item.bought) {
             executeMutation( { id: item.id, data: { bought: true } } );
         }
+
         res;
-        
         
     }
     
