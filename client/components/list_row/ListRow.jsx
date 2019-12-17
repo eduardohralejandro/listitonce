@@ -1,17 +1,20 @@
 import React from 'react';
 
+import CheckItem from '../bought_item/CheckItem';
+
 
 const ListRow = ({ children, listTitle }) => {
+
     return (
-        <div style={{backgroundColor:"blue"}}>
+        <div style={ { backgroundColor: "blue" } }>
             <h1>{listTitle}</h1>
-            {children.map((element) => {
+            {children.map((item) => {
                 return (
-                    <div key={element.id}>
+                    <div key={item.id}>
                         <h1>{children.listTitle}</h1>
-                        {element.employee}
-                        {element.bought}
-                        {element.product}
+                        {item.employee}
+                        {item.product}
+                        <CheckItem  item={item} />
                     </div>
                 );
             })}
