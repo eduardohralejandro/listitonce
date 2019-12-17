@@ -11,7 +11,6 @@ const Query = {
                 throw new Error(error);
             }
         });
-
         return lists;
     }
 }
