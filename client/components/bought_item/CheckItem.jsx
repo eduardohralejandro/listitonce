@@ -18,6 +18,7 @@ const CheckItem = ({ item }) => {
         }
 
         res;
+        
     }
     
     return (
