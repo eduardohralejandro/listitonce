@@ -1,9 +1,0 @@
-mutation updateBuyer($id: ID, $data: updateBuyerInput) {
-  updateBuyer(id: $id, data: $data) {
-    id
-    employee
-    price
-    product
-    bought
-  }
-}

@@ -41,16 +41,6 @@ const client = createClient({
                             return dataCache;
                         }
                     );
-                },
-                updateBuyer: (result, args, cache, info) => {
-                    cache.updateQuery({
-                            query:  RENDER_LISTS,
-                        },
-                        (dataCache) => {
-                            dataCache.savedList.unshift(result.updateBuyer);
-                            return dataCache;
-                        }
-                    );
                 }
             }
         }

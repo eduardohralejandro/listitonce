@@ -12,7 +12,7 @@ const RenderLists = () => {
     });
     
     const { data } = res;
-    
+
     if (res.fetching) {
         return 'fetching...';
     }
