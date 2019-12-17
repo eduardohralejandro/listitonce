@@ -7,7 +7,7 @@ const Mutation = {
         const newItem = {
             id: uuid(),
             ...args,
-            employee: 0,
+            employee: null,
             bought: false,
             price: 0,
         }
@@ -27,19 +27,17 @@ const Mutation = {
         return null;
     },
     updateBuyer: async (parent, args, { db, ListSchema }, info) => {
-
-        if (args.data.employee.length === 0 || args.data.product.length === 0) {
-            throw new Error("You must include the required information");
-        }
-
         try {
-            const updatedItem = await ListSchema.update({ "items.id": args.id }, { "$set": {
-                "items.$.employee": args.data.employee,
-                "items.$.product": args.data.product,
-                "items.$.bought": args.data.bought,
-                "items.$.price": args.data.price,
-            }});
-                return updatedItem;
+               const listSchema = await ListSchema.update({ "items._id": args.id }, { "$set": {
+                    "items.$.employee": args.data.employee,
+                    "items.$.product": args.data.product,
+                    "items.$.bought": args.data.bought,
+                    "items.$.price": args.data.price,
+                },
+                new: true, useFindAndModify: false
+            });
+
+           return listSchema; /** Solve this issue to update schema in a proper way */
         } 
         catch(e) {
             throw new Error("Unable to update item")
