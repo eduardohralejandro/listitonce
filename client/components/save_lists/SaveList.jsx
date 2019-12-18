@@ -4,7 +4,7 @@ import { useMutation } from 'urql';
 import SAVE_LISTS from './SAVE_LISTS.graphql';
 
 
-const SaveList = () => {
+const SaveList = ({ updated }) => {
 
   const [ title, setTitle ] = useState("");
 
@@ -15,10 +15,11 @@ const SaveList = () => {
   };
 
   const saveNewList = () => {
-    executeMutation({ listTitle: title })
+    executeMutation({ listTitle: title });
     setTitle("");
+    updated();
   };
-
+    
     if (res.error) {
         return 'error';
     } 
