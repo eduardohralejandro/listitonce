@@ -14,10 +14,6 @@ const ListRow = ({ children, listTitle }) => {
                 return (
                     <div key={element.id}>
                         <h1>{children.listTitle}</h1>
-                        {/* {element.employee}
-                        {element.bought}
-                        {element.product}
-                        {element.price} */}
                         <Price item={element} />
                         <Product  item={element} />
                         <Employee item={element} />
