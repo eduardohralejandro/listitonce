@@ -15,7 +15,6 @@ const Employee = ({ item }) => {
         price: item.price, bought: item.bought } } );
 
         setEmployee("");
-        
     }
 
     const handleChange = (e) => {
