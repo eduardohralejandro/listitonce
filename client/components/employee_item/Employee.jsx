@@ -25,7 +25,8 @@ const Employee = ({ item }) => {
         <Fragment>
             <form onSubmit={(e) => saveEmployee(e, item)}>
                 <input placeholder="Employee" value={employee}  onChange={(e) => handleChange(e)}  type="text" /> 
-            </form>     
+            </form>
+            <h2>{item.employee}</h2>   
         </Fragment>
     );  
 };

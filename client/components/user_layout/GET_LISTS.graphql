@@ -5,7 +5,8 @@ query {
             id 
             product 
             bought 
-            employee  
+            employee
+            price  
         }
     }
 }
