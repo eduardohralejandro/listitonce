@@ -10,11 +10,12 @@ const Employee = ({ item }) => {
  
     const saveEmployee = (e, item) => {
         e.preventDefault();
-        
+
         executeMutation( { id: item.id, data: { employee, product: item.product,
         price: item.price, bought: item.bought } } );
 
         setEmployee("");
+        
     }
 
     const handleChange = (e) => {
