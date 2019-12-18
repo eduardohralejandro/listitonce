@@ -1,6 +1,8 @@
 import React from 'react';
 
-import CheckItem from '../bought_item/CheckItem'
+import CheckItem from '../bought_item/CheckItem';
+import Employee from '../employee_item/Employee';
+
 
 const ListRow = ({ children, listTitle }) => {
     return (
@@ -13,6 +15,7 @@ const ListRow = ({ children, listTitle }) => {
                         {element.employee}
                         {element.bought}
                         {element.product}
+                        <Employee item={element} />
                         <CheckItem item={element} />
                     </div>
                 );
