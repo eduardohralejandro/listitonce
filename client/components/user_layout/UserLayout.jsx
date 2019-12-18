@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useQuery } from 'urql';
 
 import CreateItem from '../create_item/CreateItem';
@@ -10,10 +10,22 @@ import GET_LISTS from './GET_LISTS.graphql';
 
 const UserLayout = () => {
 
+    const [ displayItems, setDisplayItems ] = useState(true);
+
     const [ res ] = useQuery({
         query: GET_LISTS,
     });
     const { data } = res;
+
+    const updated = () => {
+        data.list.map((list) => {
+            if (list.items.length > 0) {
+                setDisplayItems(false)
+            }
+            return list;
+        });
+        /** update layout items after saving list */
+    }
 
     if (res.fetching) {
         return 'loading...';
@@ -21,12 +33,12 @@ const UserLayout = () => {
     else {
         return (
             <Fragment>
-                <SaveList />
+                <SaveList  updated={updated} />
                 <CreateItem />
                 {data.list && data.list.map((list) => {
                     return (
                         <Fragment key={list.id}>
-                            <Items items={list.items} />
+                            <Items items={list.items}  displayItems={displayItems} />
                         </Fragment>
                     );
                 })}

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import DeleteItem from '../delete_item/DeleteItem';
 
 
-const Items = ({ items }) => {
+const Items = ({ displayItems, items }) => {
     return (
         <div>
-            {items.map((item) => {
+            {displayItems && items.map((item) => {
                 return (
                     <Fragment key={`${item.id}`}>
                         <h1>{item.product}</h1>
