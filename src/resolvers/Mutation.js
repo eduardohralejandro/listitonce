@@ -10,6 +10,7 @@ const Mutation = {
             employee: null,
             bought: false,
             price: 0,
+            saved: false,
         }
         db.list.map((list) => list.items.push(newItem));
         return newItem;
@@ -33,6 +34,7 @@ const Mutation = {
                     "items.$.product": args.data.product,
                     "items.$.bought": args.data.bought,
                     "items.$.price": args.data.price,
+                    "items.$.saved": args.data.saved,
                 },
                 new: true, useFindAndModify: false
             });
@@ -48,7 +50,7 @@ const Mutation = {
         const items = [];
 
         db.list.map((list) => list.items.map(item => items.push(item)));
-  
+
         const saveInDb = new ListSchema({
             ...args,
             items,

@@ -11,10 +11,10 @@ const CheckItem = ({ item }) => {
     const open = (item) => {
   
         if (item.bought) {
-            executeMutation( { id: item.id, data: { bought: false, employee: item.employee, product: item.product, price: item.price,} } );
+            executeMutation( { id: item.id, data: { bought: false, employee: item.employee, product: item.product, price: item.price, saved: true } } );
         } 
         else if (!item.bought) {
-            executeMutation( { id: item.id, data: { bought: true, employee: item.employee, product: item.product, price: item.price, } } );
+            executeMutation( { id: item.id, data: { bought: true, employee: item.employee, product: item.product, price: item.price, saved: false } } );
         }
 
         res;

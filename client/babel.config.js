@@ -17,7 +17,7 @@ module.exports = {
         'react-hot-loader/babel',
         '@babel/plugin-proposal-export-default-from',
         ['@babel/plugin-proposal-optional-chaining', { loose: false }],
-        '@babel/plugin-proposal-do-expressions',
         'import-graphql',
+        "@babel/plugin-proposal-do-expressions"
     ]
 }
