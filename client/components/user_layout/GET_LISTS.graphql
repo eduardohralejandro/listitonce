@@ -6,7 +6,8 @@ query {
             product 
             bought 
             employee
-            price  
+            price
+            saved  
         }
     }
 }

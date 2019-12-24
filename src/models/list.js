@@ -17,6 +17,9 @@ const itemsSubSchema = new mongoose.Schema({
     price: {
       type: Number,
     },
+    saved: {
+      type: Boolean,
+    },
   });
 
 const ListSchema = new mongoose.Schema({

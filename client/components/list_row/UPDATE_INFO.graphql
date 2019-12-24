@@ -5,5 +5,6 @@ mutation updateBuyer($id: ID, $data: updateBuyerInput) {
     price
     product
     bought
+    saved
   }
 }
