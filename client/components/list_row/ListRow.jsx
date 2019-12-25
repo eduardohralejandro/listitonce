@@ -1,32 +1,48 @@
-import React, { useState } from 'react';
-import { useMutation } from 'urql';
+import React, { useState, Fragment } from "react";
+import { useMutation } from "urql";
 
-import CheckItem from '../bought_item/CheckItem';
-import Employee from '../employee_item/Employee';
-import Product from '../product_item/Product';
-import Price from '../price_item/Price';
-import UPDATE_INFO from './UPDATE_INFO.graphql';
+import CheckItem from "../bought_item/CheckItem";
+import Employee from "../employee_item/Employee";
+import Product from "../product_item/Product";
+import Price from "../price_item/Price";
+import UPDATE_INFO from "./UPDATE_INFO.graphql";
 
 
 const ListRow = ({ children, listTitle }) => {
 
     const [ inputValues, setInputValues ] = useState({
-        price: '', 
-        employee: '',
-        product: '', 
+        price: "", 
+        employee: "",
+        product: "", 
     });
+
+    const [ errorMessage, setErrorMessage ] = useState("");
 
     const [ res, executeMutation ] = useMutation(UPDATE_INFO);
 
-    const save = (e, item) => {
-        e.preventDefault();
+    const save = (e, item, displayInput) => {
 
+        e.preventDefault();
+ 
         const numberPrice = Number(inputValues.price);
 
-        executeMutation( { id: item.id, data: { employee: inputValues.employee, product: inputValues.product, price: numberPrice, bought: item.bought, saved: true } } );
+        if (!inputValues || inputValues.product.length === 0 && item.product.length === 0 || inputValues.employee.length === 0  && item.employee.length === 0 || inputValues.price.length === 0 && item.price.length === 0) {
+            setErrorMessage("Must provide required information");    
+        } 
+        else if (displayInput) {
+       
+            executeMutation( { id: item.id, data: { 
+            employee: inputValues.employee, 
+            product: inputValues.product, 
+            price: numberPrice, 
+            bought: item.bought, 
+            saved: true } } );
 
-        setInputValues("");
-        res;
+            setInputValues("");
+            setErrorMessage("");
+            res;
+        }
+        
     }
 
     const handleChange = event => {
@@ -39,28 +55,37 @@ const ListRow = ({ children, listTitle }) => {
     return (
         <div style={ { backgroundColor:"blue" } }>
             <h1>{listTitle}</h1>
+            
             {children.map((element) => {
+
+               const displayInput = element.bought && !element.saved || !element.bought && element.saved;
+
                 return (
                     <div key={element.id}>
                          <h1>{children.listTitle}</h1>
-                        {element.bought  && !element.saved
-                            ?
-                            <button onClick={(e) => save(e, element)}>save</button>
-                            :
-                            null
-                        }                        
-
-                        {element.bought && !element.saved ? 
+                        
+                        {
+                            do { if (displayInput) {
+                                return (
+                                    <Fragment>
+                                    {errorMessage}
+                                        <button onClick={(e) => save(e, element, displayInput)}>save</button>
+                                    </Fragment>   
+                                );
+                            }}    
+                        }
+                        
+                        {displayInput ? 
                             <Price handleChange={handleChange}  item={element} />
                             :
-                            element.price
+                            `${element.price}€`
                         }
-                        {element.bought && !element.saved  ? 
+                        {displayInput ? 
                             <Product handleChange={handleChange} item={element} />
                             :
                             element.product
                         }
-                        {element.bought  && !element.saved ? 
+                        {displayInput ? 
                              <Employee handleChange={handleChange} item={element} />
                             :
                             element.employee

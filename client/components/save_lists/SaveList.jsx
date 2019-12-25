@@ -7,6 +7,7 @@ import SAVE_LISTS from './SAVE_LISTS.graphql';
 const SaveList = ({ updated }) => {
 
   const [ title, setTitle ] = useState("");
+  const [ error, setError ] = useState("");
 
   const [ res, executeMutation ] = useMutation(SAVE_LISTS);
 
@@ -15,9 +16,15 @@ const SaveList = ({ updated }) => {
   };
 
   const saveNewList = () => {
-    executeMutation({ listTitle: title });
-    setTitle("");
-    updated();
+    if (title.length === 0) {
+        setError("you must add a valid list title");
+    } 
+    else {
+        executeMutation({ listTitle: title });
+        setTitle("");
+        updated();
+        setError("");
+    }
   };
     
     if (res.error) {
@@ -26,9 +33,9 @@ const SaveList = ({ updated }) => {
     else {
         return (
             <div>
-                <h1>save list</h1>
                 <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
                 <button onClick={saveNewList}>save list</button>
+                {error}
             </div>
         );
     }

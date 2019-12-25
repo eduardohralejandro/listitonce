@@ -18,6 +18,7 @@ module.exports = {
         '@babel/plugin-proposal-export-default-from',
         ['@babel/plugin-proposal-optional-chaining', { loose: false }],
         'import-graphql',
-        "@babel/plugin-proposal-do-expressions"
+        "@babel/plugin-proposal-do-expressions",
+        ["@babel/plugin-syntax-do-expressions"]
     ]
 }

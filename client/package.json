@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-do-expressions": "^7.7.4",
+    "@babel/plugin-syntax-do-expressions": "^7.7.4",
     "babel-plugin-import-graphql": "^2.7.0"
   }
 }
