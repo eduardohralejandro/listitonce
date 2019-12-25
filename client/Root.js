@@ -1,8 +1,12 @@
 import React from 'react';
 import { Provider, createClient, dedupExchange, fetchExchange,  } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 
 import UserLayout from './components/user_layout/UserLayout';
+import Recipes from './components/recipes/Recipes';
+import Navbar from './components/navbar/Navbar';
 import GET_LISTS from './components/user_layout/GET_LISTS.graphql';
 import RENDER_LISTS from './components/render_lists/RENDER_LISTS.graphql';
 
@@ -60,9 +64,15 @@ const client = createClient({
 
 const Root = () => {
     return (
-        <Provider value={client}>
-            <UserLayout />
-        </Provider>
+        <BrowserRouter>
+            <Provider value={client}>
+                <Navbar />
+                <Switch>
+                    <Route exact path="/" component={UserLayout} />
+                    <Route path="/recipes" component={Recipes} />
+                </Switch>
+            </Provider>
+        </BrowserRouter>
     );
 };
 
