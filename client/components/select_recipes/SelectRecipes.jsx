@@ -7,6 +7,7 @@ import RenderRecipes from '../render_recipes/RenderRecipes';
 const SelectRecipes = ({ options }) => {
 
     const [ foodRecipes, setFoodRecipes ] = useState(null);
+    const [ loader, setLoader ] = useState(false);
 
     const handleChange = async (ingredient) => {
         
@@ -15,20 +16,27 @@ const SelectRecipes = ({ options }) => {
       
         const url = `https://api.edamam.com/search?q=${ingredient.value}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
+        setLoader(true);
+        
         try {
+
             const data = await axios.get(url);
-            setFoodRecipes(data.data.hits);
+
+            if (data) {
+                setLoader(false);
+                setFoodRecipes(data.data.hits);
+            } 
         }
         catch (e) {
             throw new Error("unable to get recipes, try again", e);
         }   
     }
-    
+
     return (
         <div> 
             <h1>Select Recipes</h1>
             <Select onChange={handleChange} options={options} />
-            <RenderRecipes foodRecipes={foodRecipes} />
+            {loader ? "loading..." : <RenderRecipes foodRecipes={foodRecipes} />}
         </div>
     );
 };
