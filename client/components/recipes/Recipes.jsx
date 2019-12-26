@@ -3,9 +3,10 @@ import Select from "react-select";
 import { useQuery } from 'urql';
 
 import GET_PRODUCT from './GET_PRODUCT.graphql';
-
+import SelectRecipes from '../select_recipes/SelectRecipes';
 
 const Recipes = () => {
+    
     const [ options , setOptions ] = useState([]);
     const [ res ] = useQuery({
         query: GET_PRODUCT,
@@ -29,10 +30,7 @@ const Recipes = () => {
     }  
     else {
         return (
-            <div> 
-                <p>recipes</p>
-                <Select />
-            </div>
+            <SelectRecipes options={options} />
         );
     }
 };
