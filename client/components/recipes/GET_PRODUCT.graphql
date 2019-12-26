@@ -1,0 +1,10 @@
+query {
+    savedList {
+      id
+      listTitle
+      items {
+          id  
+          product 
+      }
+    }
+}
