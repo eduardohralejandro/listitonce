@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Select from "react-select";
 import { useQuery } from 'urql';
 
 import GET_PRODUCT from './GET_PRODUCT.graphql';
 import SelectRecipes from '../select_recipes/SelectRecipes';
 
-const Recipes = () => {
+
+const GetProduct = () => {
     
     const [ options , setOptions ] = useState([]);
     const [ res ] = useQuery({
@@ -36,4 +36,4 @@ const Recipes = () => {
 };
 
 
-export default Recipes;
+export default GetProduct;

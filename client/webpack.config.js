@@ -19,7 +19,9 @@ dotenv.config();
 
 const basePlugins = [
     new webpack.EnvironmentPlugin({
-        NODE_ENV: process.env.NODE_ENV
+        NODE_ENV: process.env.NODE_ENV,
+        APP_KEY: process.env.APP_KEY,
+        APP_ID: process.env.APP_KEY,
     }),
     new HtmlWebpackPlugin({
         filename: isProduction ? '404.html' : 'index.html',

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
 import UserLayout from './components/user_layout/UserLayout';
-import Recipes from './components/recipes/Recipes';
+import GetProduct from './components/get_product/GetProduct';
 import Navbar from './components/navbar/Navbar';
 import GET_LISTS from './components/user_layout/GET_LISTS.graphql';
 import RENDER_LISTS from './components/render_lists/RENDER_LISTS.graphql';
@@ -69,7 +69,7 @@ const Root = () => {
                 <Navbar />
                 <Switch>
                     <Route exact path="/" component={UserLayout} />
-                    <Route path="/recipes" component={Recipes} />
+                    <Route path="/recipes" component={GetProduct} />
                 </Switch>
             </Provider>
         </BrowserRouter>
