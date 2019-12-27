@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useMutation } from 'urql';
+import styles from '../save_lists/savelists.module.scss';
 
 import SAVE_LISTS from './SAVE_LISTS.graphql';
 import CreateItem from '../create_item/CreateItem';
@@ -40,15 +41,19 @@ const SaveList = ({ updated }) => {
     else {
         return (
             <div>
-                <button onClick={displyInput}>Create new list</button>
+                <div className={styles.displyInputContainer}>
+                    <button className={styles.btnDisplayInput} onClick={displyInput}>Create new list +</button>
+                </div>
                 {do {
                     if (display) {
                        return (
                         <Fragment>
-                            <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
-                            <button onClick={saveNewList}>save list</button>
-                            {error}
-                            <CreateItem />
+                            <div className={styles.createListBox}>
+                                <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
+                                <button onClick={saveNewList}>save list</button>
+                                {error}
+                                <CreateItem />
+                            </div>
                         </Fragment>
                        ); 
                     } 
