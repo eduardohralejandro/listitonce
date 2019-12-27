@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
+import styles from "./navbar.module.scss";
 
 const Navbar = () => {
 
@@ -12,6 +12,7 @@ const Navbar = () => {
             <Link to="/recipes">
                 recipes
             </Link>
+            <h1 className={styles.word} >hello</h1>
         </Fragment>
     );
 };
