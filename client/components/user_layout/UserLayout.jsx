@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { useQuery } from 'urql';
 
-import CreateItem from '../create_item/CreateItem';
 import Items from '../items/Items';
 import SaveList from '../save_lists/SaveList';
 import RenderLists from '../render_lists/RenderLists';
@@ -34,7 +33,6 @@ const UserLayout = () => {
         return (
             <Fragment>
                 <SaveList  updated={updated} />
-                <CreateItem />
                 {data.list && data.list.map((list) => {
                     return (
                         <Fragment key={list.id}>

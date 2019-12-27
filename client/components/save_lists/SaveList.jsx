@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useMutation } from 'urql';
 
 import SAVE_LISTS from './SAVE_LISTS.graphql';
+import CreateItem from '../create_item/CreateItem';
 
 
 const SaveList = ({ updated }) => {
 
   const [ title, setTitle ] = useState("");
   const [ error, setError ] = useState("");
+  const [ display, setDisplay ] = useState("");
 
   const [ res, executeMutation ] = useMutation(SAVE_LISTS);
 
@@ -24,8 +26,13 @@ const SaveList = ({ updated }) => {
         setTitle("");
         updated();
         setError("");
+        setDisplay(false);
     }
   };
+
+  const displyInput = () => {
+      setDisplay(true)
+  }
     
     if (res.error) {
         return 'error';
@@ -33,9 +40,19 @@ const SaveList = ({ updated }) => {
     else {
         return (
             <div>
-                <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
-                <button onClick={saveNewList}>save list</button>
-                {error}
+                <button onClick={displyInput}>Create new list</button>
+                {do {
+                    if (display) {
+                       return (
+                        <Fragment>
+                            <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
+                            <button onClick={saveNewList}>save list</button>
+                            {error}
+                            <CreateItem />
+                        </Fragment>
+                       ); 
+                    } 
+                }}
             </div>
         );
     }
