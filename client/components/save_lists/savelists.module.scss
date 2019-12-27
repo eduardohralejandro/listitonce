@@ -1,0 +1,25 @@
+.createListBox {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.displyInputContainer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    .btnDisplayInput {
+    background-color: #443bff;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 3rem;
+    width: 28rem;
+    margin: 10rem 0 0 0;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 #cfd6d6;
+    }
+}
