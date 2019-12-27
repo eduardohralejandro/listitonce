@@ -7,11 +7,7 @@ import Root from '../Root';
 
 let App = () => {
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={Root} />
-            </Switch>
-        </BrowserRouter>
+        <Root />
     );
 };
 

@@ -13,16 +13,28 @@ const GetProduct = () => {
     });
 
     useEffect(() => {
-       res.data.savedList.map((product) => {
-            return (product.items.map((productInfo) => {
 
-                const newOptions = { value: productInfo.product, label: productInfo.product }
+        const fetchData = async () => {
 
-                setOptions(oldOptions => [...oldOptions,  newOptions ]);
-                
-                return productInfo;
-            }));
-        });
+            if (res.fetching) {
+                return "loading..."
+            } 
+            else {
+                await res.data.savedList.map((product) => {
+                    return (product.items.map((productInfo) => {
+        
+                        const newOptions = { value: productInfo.product, label: productInfo.product }
+        
+                        setOptions(oldOptions => [...oldOptions,  newOptions ]);
+                        
+                        return productInfo;
+                    }));
+                });
+            }
+        }
+
+        fetchData();
+        
     }, []);
 
     if (res.fetching){
