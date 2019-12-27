@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import styles from "./navbar.module.scss";
 
 const Navbar = () => {
-
     return (
-        <Fragment>
-            <Link to="/">
-                dahshboard
+        <div className={styles.navbarFragment}>
+            <Link className={styles.link} to="/">
+                <img alt='brand-logo' src='https://svgshare.com/i/FUq.svg' />
             </Link>
-            <Link to="/recipes">
-                recipes
+            <Link className={styles.link} to="/">
+                <h3>Dashboard</h3>
             </Link>
-            <h1 className={styles.word} >hello</h1>
-        </Fragment>
+            <Link className={styles.link} to="/recipes">
+                <h3>Recipes</h3>
+            </Link>
+        </div>
     );
 };
 

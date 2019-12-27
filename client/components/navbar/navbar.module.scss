@@ -1,3 +1,17 @@
-.word {
-    color: red;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.navbarFragment {
+    margin: 2rem 0 0 0;
+    display: flex; 
+    justify-content: space-between;    
+    .link {
+        text-decoration: none;
+        width: 50%;
+        font-size: 1.2rem;
+        font-family: 'Roboto', sans-serif;
+        color: rgb(88, 88, 88);
+        img {
+            padding: 0 0 0 2rem;
+        }
+    }
 }
