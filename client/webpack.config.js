@@ -4,12 +4,13 @@ const betterWebpackProgress = require('better-webpack-progress');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ip = require('ip');
 const dotenv = require('dotenv');
 
 
 const isProduction = process.env.NODE_ENV === 'production';
-
+/** This is used to optimize your bundles only when building for production, which should result in faster development builds */
 
 const WEBPACK_PORT = 5000;
 
@@ -22,6 +23,10 @@ const basePlugins = [
         NODE_ENV: process.env.NODE_ENV,
         APP_KEY: process.env.APP_KEY,
         APP_ID: process.env.APP_KEY,
+    }),
+    new MiniCssExtractPlugin({
+        filename: isProduction ? '[name].css' : '[name].[hash].css',
+        chunkFilename: isProduction ? '[id].css' : '[id].[hash].css',
     }),
     new HtmlWebpackPlugin({
         filename: isProduction ? '404.html' : 'index.html',
@@ -105,6 +110,39 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.module\.s(a|c)ss$/,
+                loader: [
+                    isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            sourceMap: isProduction
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: isProduction
+                        },
+                    },
+                ]
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                exclude: /\.module.(s(a|c)ss)$/,
+                loader: [
+                isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+                'css-loader',
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: isProduction
+                    },
+                    }
+                ]
+            }
         ],
     },
     devServer: {
