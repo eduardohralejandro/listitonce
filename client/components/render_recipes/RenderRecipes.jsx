@@ -6,7 +6,7 @@ const RenderRecipes = ({ foodRecipes }) => {
         <Fragment>
             {foodRecipes?.map((food, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                        <h3>{food.recipe.label}</h3>
                        <img key={index} src={food.recipe.image} alt="recipes" />
                        {food.recipe.ingredientLines.map((ingredient, index) => {
