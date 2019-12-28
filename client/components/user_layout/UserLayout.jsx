@@ -10,12 +10,15 @@ import GET_LISTS from './GET_LISTS.graphql';
 const UserLayout = () => {
 
     const [ displayItems, setDisplayItems ] = useState(true);
+    const [ display, setDisplay ] = useState(false);
+    const [ itemProps, setItemProps ] = useState(null);
 
     const [ res ] = useQuery({
         query: GET_LISTS,
     });
+    
     const { data } = res;
-
+  
     const updated = () => {
         data.list.map((list) => {
             if (list.items.length > 0) {
@@ -23,7 +26,16 @@ const UserLayout = () => {
             }
             return list;
         });
+         setDisplay(false);
         /** update layout items after saving list */
+    }
+
+    const displayInput = () => {
+        setDisplay(true);
+    }
+
+    const showInputs = (item) => {
+        setItemProps(item)
     }
 
     if (res.fetching) {
@@ -32,15 +44,19 @@ const UserLayout = () => {
     else {
         return (
             <Fragment>
-                <SaveList  updated={updated} />
-                {data.list && data.list.map((list) => {
+                <SaveList itemProps={itemProps} list={data.list} displayInput={displayInput} display={display} updated={updated} />
+                {data?.list.map((list) => {
                     return (
                         <Fragment key={list.id}>
-                            <Items items={list.items}  displayItems={displayItems} />
+                            {do {
+                                if (list?.items.length > 0) {
+                                    <Items items={list.items}  displayItems={displayItems} />
+                                }
+                            }}
                         </Fragment>
                     );
                 })}
-                <RenderLists />
+                <RenderLists show={showInputs}  />
             </Fragment>
         );
     }

@@ -5,7 +5,7 @@ import ListRow from '../list_row/ListRow';
 import RENDER_LISTS from './RENDER_LISTS.graphql';
 
 
-const RenderLists = () => {
+const RenderLists = ({ show }) => {
     
     const [ res ] = useQuery({
         query: RENDER_LISTS,
@@ -17,6 +17,7 @@ const RenderLists = () => {
         return 'fetching...';
     }
     else {
+        show(data.savedList);
         return (
             <div>
                 {data.savedList.map((list) => {
