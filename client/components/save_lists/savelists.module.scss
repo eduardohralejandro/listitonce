@@ -1,14 +1,45 @@
+$green-save-color: #61e06b;
+$create-newList:  #443bff;
+
 .createListBox {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    align-items: center;
     img {
         margin: 9rem 0 0 0;
         height: 6rem;
     }
     p {
         font-family: 'Roboto', sans-serif;
+    }
+    .saveList {
+    border: 2px solid $green-save-color;
+    cursor: pointer;
+    outline: inherit;
+    background-color: #fff;
+    color: $green-save-color;
+    padding: .5rem 2rem;
+    border-radius: 5px;
+    margin: 2rem 4rem 1rem 23rem;
+    }
+
+    .saveList:hover {
+        background-color: $green-save-color;
+        color: $create-newList
+    }
+    .inputListTitle {
+    background-image: none;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 8px 0 #cfd6d6;
+    height: 3rem;
+    outline: none;
+    padding: 5rem,5rem,8rem,8rem;
+    width: 28rem;
+    text-indent: 0.6rem;
     }
 }
 
@@ -17,7 +48,7 @@
     text-align: center;
     justify-content: center;
     .btnDisplayInput {
-    background-color: #443bff;
+    background-color: $create-newList;
     border-radius: 5px;
     font-size: 1rem;
     border: none;

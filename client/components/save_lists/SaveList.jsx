@@ -42,8 +42,8 @@ const SaveList = ({ updated, list, display, displayInput, itemProps }) => {
                     do {
                         if (display || list[0].items.length > 0) {
                             <div className={styles.createListBox}>
-                                <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
-                                <button onClick={saveNewList}>save list</button>
+                                <button  className={styles.saveList} onClick={saveNewList}>Save list</button>
+                                <input className={styles.inputListTitle} value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
                                 {error}
                                 <CreateItem />
                             </div>
