@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from 'urql';
 
+import styles from "../create_item/createitem.module.scss";
 import CREATE_ITEM from './CREATE_ITEM.graphql';
 
 
@@ -35,8 +36,7 @@ const CreateItem = () => {
     return (
       <div>
         <form onSubmit={(e) => addTitle(e)}>
-          <input value={product} onChange={(e) => handleOnChange(e)} />
-          <button>add</button>
+          <input placeholder="+ Add Item" className={styles.itemInput} value={product} onChange={(e) => handleOnChange(e)} />
         </form>
         {error}
       </div>
