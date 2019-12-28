@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'urql';
 import styles from '../save_lists/savelists.module.scss';
 
@@ -6,13 +6,12 @@ import SAVE_LISTS from './SAVE_LISTS.graphql';
 import CreateItem from '../create_item/CreateItem';
 
 
-const SaveList = ({ updated }) => {
+const SaveList = ({ updated, list, display, displayInput, itemProps }) => {
 
   const [ title, setTitle ] = useState("");
   const [ error, setError ] = useState("");
-  const [ display, setDisplay ] = useState("");
 
-  const [ res, executeMutation ] = useMutation(SAVE_LISTS);
+  const [  res , executeMutation ] = useMutation(SAVE_LISTS);
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -27,14 +26,9 @@ const SaveList = ({ updated }) => {
         setTitle("");
         updated();
         setError("");
-        setDisplay(false);
     }
   };
-
-  const displyInput = () => {
-      setDisplay(true)
-  }
-    
+   
     if (res.error) {
         return 'error';
     } 
@@ -42,22 +36,30 @@ const SaveList = ({ updated }) => {
         return (
             <div>
                 <div className={styles.displyInputContainer}>
-                    <button className={styles.btnDisplayInput} onClick={displyInput}>Create new list +</button>
+                    <button className={styles.btnDisplayInput} onClick={displayInput}>+ Create new list</button>
                 </div>
-                {do {
-                    if (display) {
-                       return (
-                        <Fragment>
+                {
+                    do {
+                        if (display || list[0].items.length > 0) {
                             <div className={styles.createListBox}>
                                 <input value={title} onChange={(e) => handleChange(e)} placeholder="List title" />
                                 <button onClick={saveNewList}>save list</button>
                                 {error}
                                 <CreateItem />
                             </div>
-                        </Fragment>
-                       ); 
-                    } 
-                }}
+                        }
+                    }
+                }
+                {
+                    do {
+                        if (!display && itemProps?.length === 0 && list[0].items.length === 0) {
+                            <div className={styles.createListBox}>
+                                <img alt='items' src={"https://svgshare.com/i/FS_.svg"} />
+                                <p>Your items will be here</p>
+                            </div>
+                        }
+                    }
+                }
             </div>
         );
     }
