@@ -1,0 +1,28 @@
+.itemContainer {
+display: flex;
+text-align: center;
+margin:0px auto;
+width: 400px;
+flex-wrap: wrap;
+justify-content: space-between;
+background-image: none;
+background-color: #fff;
+border-radius: 5px;
+border: none;
+box-shadow: 0 2px 8px 0 #cfd6d6;
+outline: none;
+width: 28rem;
+height: auto;
+margin-top: 2rem;
+    div {
+        max-width: 12rem;;
+        flex-basis: calc(10% - 20px);
+        margin: 0.5rem 1rem;
+    }
+    p {
+        max-width: 10rem;
+        margin: 1rem 1rem;
+
+        flex-basis: calc(70% - 20px);
+    }
+}

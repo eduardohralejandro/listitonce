@@ -2,16 +2,19 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import DeleteItem from '../delete_item/DeleteItem';
+import styles from "./items.module.scss";
 
 
 const Items = ({ displayItems, items }) => {
     return (
-        <div>
+        <div className={styles.itemContainer}>
             {displayItems && items.map((item) => {
                 return (
-                    <Fragment key={`${item.id}`}>
-                        <h1>{item.product}</h1>
-                        <DeleteItem id={item.id} />
+                    <Fragment key={item.id}>
+                        <p>{item.product}</p>
+                        <div>
+                            <DeleteItem id={item.id} />
+                        </div>
                     </Fragment>
                 );
             })}

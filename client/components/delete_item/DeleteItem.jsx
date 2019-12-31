@@ -3,6 +3,7 @@ import { useMutation } from 'urql';
 import PropTypes from 'prop-types';
 
 import DELETE_ITEM from './DELETE_ITEM.graphql';
+import styles from '../delete_item/deleteitem.module.scss';
 
 
 const DeleteItem = ({ id }) => {
@@ -14,8 +15,8 @@ const DeleteItem = ({ id }) => {
   }
   else {
     return (
-      <div>
-        <button onClick={() => executeMutation({ id })}>delete</button>
+      <div className={styles.bin}>
+        <img width="15" alt='deleteitem' onClick={() => executeMutation({ id })} src='https://svgshare.com/i/FSv.svg' />
       </div>
     );
   }
