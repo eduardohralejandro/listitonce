@@ -1,0 +1,32 @@
+.savedListContainer {
+    display: flex;
+    text-align: center;
+    margin:0px auto;
+    flex-direction: column;
+    width: 400px;
+    background-image: none;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 8px 0 #cfd6d6;
+    outline: none;
+    width: 28rem;
+    height: auto;
+    margin-top: 2rem;
+    justify-content: space-around;
+    h2 {
+        margin-right: 19rem;
+        margin-left: 1rem;
+    }
+}
+
+.elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    p {
+        margin: 1rem 1rem;
+        max-width: 0rem;
+        flex-basis: calc(10% - 20px);
+    }
+}
