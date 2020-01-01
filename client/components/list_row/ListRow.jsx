@@ -56,13 +56,15 @@ const ListRow = ({ children, listTitle }) => {
     return (
         <div className={styles.savedListContainer}>
             <h2>{listTitle}</h2>
+            {errorMessage}
             {children.map((element) => {
 
                const displayInput = element.bought && !element.saved || !element.bought && element.saved;
 
                 return (
-                    <div  className={styles.elements} key={element.id}>
+                    <div className={styles.elements} key={element.id}>
                          <h1>{children.listTitle}</h1>
+                         <CheckItem item={element} />
                         {displayInput ? 
                             <Fragment>
                                 <Price handleChange={handleChange}  item={element} />
@@ -71,18 +73,16 @@ const ListRow = ({ children, listTitle }) => {
                             </Fragment>
                             :
                             <Fragment>
-                                <p>{`${element.price}€`}</p>
                                 <p>{element.product}</p>
                                 <p>{element.employee}</p>
+                                <p>{`${element.price}€`}</p>
                             </Fragment>
                         }
-                             <CheckItem item={element} />
                         {
                             do { if (displayInput) {
                                 return (
                                     <Fragment>
-                                    {errorMessage}
-                                        <button onClick={(e) => save(e, element, displayInput)}>save</button>
+                                        <button className={styles.btnSave} onClick={(e) => save(e, element, displayInput)}>save</button>
                                     </Fragment>   
                                 );
                             }}    

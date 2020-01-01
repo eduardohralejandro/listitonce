@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 
+import styles from '../price_item/price.module.scss';
+
 
 const Price = ({ handleChange }) => {
     return (
         <Fragment>
-            <input name="price" placeholder="Price" onChange={(e) => handleChange(e)}  type="text" />      
+            <input className={styles.priceInput} name="price" placeholder="Price" onChange={(e) => handleChange(e)}  type="text" />      
         </Fragment>
     );  
 };

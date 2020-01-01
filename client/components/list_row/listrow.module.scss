@@ -15,7 +15,7 @@
     margin-top: 2rem;
     justify-content: space-around;
     h2 {
-        margin-right: 19rem;
+        margin-right: 28rem;
         margin-left: 1rem;
     }
 }
@@ -24,9 +24,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding:0 2.5rem 1rem 0;
     p {
         margin: 1rem 1rem;
         max-width: 0rem;
         flex-basis: calc(10% - 20px);
     }
+}
+
+.btnSave {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    outline: inherit;
 }
