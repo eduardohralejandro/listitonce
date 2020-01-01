@@ -6,10 +6,10 @@ import cors from 'cors';
 require('dotenv').config();
 
 
-import db from './db';
-import Mutation from './resolvers/Mutation';
-import Query from './resolvers/Query';
-import  ListSchema from './models/list';
+import db from './src/db';
+import Mutation from './src/resolvers/Mutation';
+import Query from './src/resolvers/Query';
+import  ListSchema from './src/models/list';
 
 
 const path = require('path');
@@ -32,7 +32,7 @@ const server = async () => {
 
     if (process.env.NODE_ENV === 'production') {
         app.use(express.static('client/build'));
-
+        console.log('running')
         app.get('*', (req, res) => {
             res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
         });
