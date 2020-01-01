@@ -64,5 +64,6 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.2"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }

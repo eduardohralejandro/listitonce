@@ -1,6 +1,8 @@
 import express from "express";
 import { GraphQLServer } from 'graphql-yoga';
 import mongoose from 'mongoose';
+import cors from 'cors';
+
 require('dotenv').config();
 
 
@@ -10,15 +12,31 @@ import Query from './resolvers/Query';
 import  ListSchema from './models/list';
 
 
+const path = require('path');
+
 const resolvers = {
     Mutation,
     Query
 }
 
 mongoose.Promise = global.Promise;
-
+  
 const server = async () => {
+
     const app = express();
+
+    const port = process.env.PORT || 4000;
+
+    app.use(cors());
+    app.use(express.json());
+
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static('client/build'));
+
+        app.get('*', (req, res) => {
+            res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        });
+    }
 
     const server = new GraphQLServer({
         typeDefs: './src/schema.graphql',
@@ -43,7 +61,7 @@ const server = async () => {
         console.log('connected')
     })
 
-server.start(() => console.log(`The server is running on http://localhost:4000`));
+server.start(() => console.log(`The server is running on port ${port}`));
 
 }
 
