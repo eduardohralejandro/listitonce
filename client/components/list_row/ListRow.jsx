@@ -6,6 +6,7 @@ import Employee from "../employee_item/Employee";
 import Product from "../product_item/Product";
 import Price from "../price_item/Price";
 import UPDATE_INFO from "./UPDATE_INFO.graphql";
+import styles from "../list_row/listrow.module.scss";
 
 
 const ListRow = ({ children, listTitle }) => {
@@ -53,17 +54,29 @@ const ListRow = ({ children, listTitle }) => {
     };
 
     return (
-        <div style={ { backgroundColor:"blue" } }>
-            <h1>{listTitle}</h1>
-            
+        <div className={styles.savedListContainer}>
+            <h2>{listTitle}</h2>
             {children.map((element) => {
 
                const displayInput = element.bought && !element.saved || !element.bought && element.saved;
 
                 return (
-                    <div key={element.id}>
+                    <div  className={styles.elements} key={element.id}>
                          <h1>{children.listTitle}</h1>
-                        
+                        {displayInput ? 
+                            <Fragment>
+                                <Price handleChange={handleChange}  item={element} />
+                                <Employee handleChange={handleChange} item={element} />
+                                <Product handleChange={handleChange} item={element} />
+                            </Fragment>
+                            :
+                            <Fragment>
+                                <p>{`${element.price}€`}</p>
+                                <p>{element.product}</p>
+                                <p>{element.employee}</p>
+                            </Fragment>
+                        }
+                             <CheckItem item={element} />
                         {
                             do { if (displayInput) {
                                 return (
@@ -74,23 +87,6 @@ const ListRow = ({ children, listTitle }) => {
                                 );
                             }}    
                         }
-                        
-                        {displayInput ? 
-                            <Price handleChange={handleChange}  item={element} />
-                            :
-                            `${element.price}€`
-                        }
-                        {displayInput ? 
-                            <Product handleChange={handleChange} item={element} />
-                            :
-                            element.product
-                        }
-                        {displayInput ? 
-                             <Employee handleChange={handleChange} item={element} />
-                            :
-                            element.employee
-                        }
-                        <CheckItem item={element} />
                     </div>
                 );
             })}
