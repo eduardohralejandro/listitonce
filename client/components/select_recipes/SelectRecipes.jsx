@@ -3,6 +3,8 @@ import Select from "react-select";
 import axios from 'axios';
 
 import RenderRecipes from '../render_recipes/RenderRecipes';
+import styles from '../select_recipes/selectrecipes.module.scss';
+
 
 const SelectRecipes = ({ options }) => {
 
@@ -34,9 +36,11 @@ const SelectRecipes = ({ options }) => {
 
     return (
         <div> 
-            <h1>Select Recipes</h1>
-            <Select onChange={handleChange} options={options} />
-            {loader ? "loading..." : <RenderRecipes foodRecipes={foodRecipes} />}
+            <div className={styles.select}>
+                <h3>Select Recipes</h3>
+                <Select onChange={handleChange} options={options} />
+                {loader ? "loading..." : <RenderRecipes foodRecipes={foodRecipes} />}
+            </div>
         </div>
     );
 };
