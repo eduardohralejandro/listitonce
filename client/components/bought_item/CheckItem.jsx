@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import {  useMutation } from 'urql';
 
 import UPDATE_PRODUCT_INFO from '../bought_item/UPDATE_PRODUCT_INFO.graphql';
-
+import styles from './checkitem.module.scss';
 
 const CheckItem = ({ item }) => {
 
@@ -23,7 +23,7 @@ const CheckItem = ({ item }) => {
     
     return (
         <Fragment>
-            <input checked={item.bought} onChange={() => open(item)}  type="checkbox" />      
+            <input className={styles.radio} checked={item.bought} onChange={() => open(item)}  type="checkbox" />      
         </Fragment>
     );  
 };
